@@ -17,7 +17,7 @@ export default function RootLayout({
     <SessionWrapper>
       <html lang="en" className="h-full">
         <body
-          className="h-full flex flex-col justify-center relative gradient-background"
+          className="h-full flex flex-col relative gradient-background"
         >
           <Header/>
           {children}

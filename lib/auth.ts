@@ -1,11 +1,11 @@
+import bcrypt from 'bcrypt'
+
 export async function hashPassword(password: string): Promise<string> {
-    const bcrypt = require("bcrypt");
     const hashedPassword = await bcrypt.hash(password, 12);
     return hashedPassword;
 }
 
-export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-    const bcrypt = require("bcrypt");
+export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {    
     if (!password) {
         return false;
     }

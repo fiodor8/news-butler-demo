@@ -24,10 +24,10 @@ export default function LoginButton () {
                 null
             )}
             {status ==="unauthenticated" && pathname !== '/login' && (
-                <Button size="sm" className="rounded-full"><Link href={"/login"}>Login</Link></Button>
+                <Link href={"/login"}><Button size="sm" className="rounded-full">Login</Button></Link>
             )}
             {status ==="unauthenticated" && pathname === '/login' && (
-                <Button size="sm" className="rounded-full"><Link href={"/signup"}>Sign Up</Link></Button>
+                <Link href={"/signup"}><Button size="sm" className="rounded-full">Sign Up</Button></Link>
             )}
             {status === "authenticated" && (
                 <Button size="sm" className="rounded-full" onClick={handleSignOut}>Log Out</Button>

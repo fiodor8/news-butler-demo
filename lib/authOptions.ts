@@ -21,7 +21,6 @@ export const authOptions: NextAuthOptions = {
             },
             authorize: async (credentials) => {
 
-                
                 if (!credentials || typeof credentials.email !== 'string' || typeof credentials.password !== 'string') {
                     throw new Error("Credentials are invalid");
                 }

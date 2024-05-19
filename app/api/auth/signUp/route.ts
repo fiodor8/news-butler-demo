@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { z } from 'zod';
 import validator from 'validator';
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
 
@@ -26,7 +27,6 @@ export async function POST(request: Request) {
       throw { message: 'User exists already!', status: 422 };
     }
 
-    const bcrypt = require("bcrypt");
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({

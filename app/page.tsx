@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import { redirect } from "next/navigation";
-import LoginButton from "@/components/loginButton";
 
 const home = async () => {
 
@@ -14,8 +13,8 @@ const home = async () => {
   const user = session?.user
 
   return (
-    <main>
-      Hello, {user?.name}!
+    <main className="max-w-screen-xl px-4 mx-auto w-full mt-20">
+      <h1 className="text-6xl uppercase font-bold tracking-tight">{user?.name}’s news</h1>
     </main>
   );
 }
