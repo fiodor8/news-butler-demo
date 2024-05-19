@@ -2,6 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextAuthOptions } from "next-auth";
 import { verifyPassword } from "./auth";
+import validator from 'validator';
 
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -19,12 +20,19 @@ export const authOptions: NextAuthOptions = {
                 password: {},
             },
             authorize: async (credentials) => {
+
+                
                 if (!credentials || typeof credentials.email !== 'string' || typeof credentials.password !== 'string') {
                     throw new Error("Credentials are invalid");
                 }
 
+                const sanitizedEmail = validator.normalizeEmail(credentials.email);
+                if (!sanitizedEmail || !validator.isEmail(sanitizedEmail)) {
+                    throw new Error("Invalid email format");
+                }
+                
                 const user = await prisma.user.findUnique({
-                    where: { email: credentials?.email }
+                    where: { email: sanitizedEmail }
                 })
 
                 if (!user || typeof user.password !== 'string' || !(await verifyPassword(credentials.password, user.password))) {
